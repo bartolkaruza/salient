@@ -1,6 +1,8 @@
 ## Toody: Make Twitter Positive Again
 Toody is a Chrome extension designed to enhance your Twitter experience by hiding the complete timeline unless its overall mood is positive. It provides a summary of the general vibes of your timeline, allowing you to pause and think if you want to jump in or maybe get back to work instead. If you decide to view the timeline anyway (if it's less than positive), Toody offers an option to display it.
 
+![Screenshot](screenshot.png)
+
 ### Features
 Hide your main Twitter timeline by default
 
