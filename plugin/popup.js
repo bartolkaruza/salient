@@ -1,4 +1,4 @@
-const openaiApiKey = "<your key>";
+const openaiApiKey = "<your-api-key>";
 
 async function analyzeMood(tweetTexts) {
   const response = await fetch("https://api.openai.com/v1/chat/completions", {
