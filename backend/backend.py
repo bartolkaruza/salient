@@ -1,26 +1,43 @@
 from flask import Flask, request
-from sklearn.metrics.pairwise import cosine_similarity
-from sklearn.feature_extraction.text import TfidfVectorizer
-import numpy as np
+from sklearn_sim import sklearn_similarity
+from faiss_sim import faiss_similarity
+from jaccard_sim import jaccard_similarity
+from bert_sim import bert_similarity
 
 app = Flask(__name__)
 
-@app.route('/similarity', methods=['POST'])
-def similarity():
+@app.route('/sklearn_similarity', methods=['POST'])
+def sklearn_handler():
     data = request.get_json()
     base_texts = data['base_texts']
     target_texts = data['target_texts']
+    similarities = sklearn_similarity(base_texts, target_texts)
+    return {'similarities': similarities}
 
-    vectorizer = TfidfVectorizer().fit_transform(base_texts + target_texts)
-    vectors = vectorizer.toarray()
+@app.route('/faiss_similarity', methods=['POST'])
+def fais_handler():
+    data = request.get_json()
+    base_texts = data['base_texts']
+    target_texts = data['target_texts']
+    similarities = faiss_similarity(base_texts, target_texts)
+    return {'similarities': similarities}
 
-    base_vectors = vectors[:len(base_texts)]
-    target_vectors = vectors[len(base_texts):]
+@app.route('/jaccard_similarity', methods=['POST'])
+def jaccard_handler():
+    data = request.get_json()
+    base_texts = data['base_texts']
+    target_texts = data['target_texts']
+    similarities = jaccard_similarity(base_texts, target_texts)
+    return {'similarities': similarities}
 
-    similarities = cosine_similarity(base_vectors, target_vectors)
-    max_similarities = np.max(similarities, axis=0)
+@app.route('/bert_similarity', methods=['POST'])
+def bert_handler():
+    data = request.get_json()
+    base_texts = data['base_texts']
+    target_texts = data['target_texts']
+    similarities = bert_similarity(base_texts, target_texts)
+    return {'similarities': similarities}
 
-    return {'similarities': max_similarities.tolist()}
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=3005)
