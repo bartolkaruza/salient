@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "sentiment": "^5.0.2"
+  },
+  "name": "toody",
+  "description": "Toody is a Chrome extension designed to enhance your Twitter experience by hiding the complete timeline unless its overall mood is positive. It provides a summary of the general vibes of your timeline, allowing you to pause and think if you want to jump in or maybe get back to work instead. If you decide to view the timeline anyway (if it's less than positive), Toody offers an option to display it.",
+  "version": "1.0.0",
+  "main": "background.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
