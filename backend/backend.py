@@ -3,6 +3,7 @@ from sklearn_sim import sklearn_similarity
 from faiss_sim import faiss_similarity
 from jaccard_sim import jaccard_similarity
 from bert_sim import bert_similarity
+from ensemble_sim import ensemble_similarity
 
 app = Flask(__name__)
 
@@ -38,6 +39,13 @@ def bert_handler():
     similarities = bert_similarity(base_texts, target_texts)
     return {'similarities': similarities}
 
+@app.route('/ensemble_similarity', methods=['POST'])
+def ensemble_handler():
+    data = request.get_json()
+    base_texts = data['base_texts']
+    target_texts = data['target_texts']
+    similarities = ensemble_similarity(base_texts, target_texts)
+    return {'similarities': similarities}
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=3005)
