@@ -1,63 +1,42 @@
-## Toody: Make Twitter Positive Again
-Toody is a Chrome extension designed to enhance your Twitter experience by hiding the complete timeline unless its overall mood is positive. It provides a summary of the general vibes of your timeline, allowing you to pause and think if you want to jump in or maybe get back to work instead. If you decide to view the timeline anyway (if it's less than positive), Toody offers an option to display it.
+Salient.News Chrome Plugin
+:warning: DISCLAIMER: Salient.News is currently in the pre-release early development stage. There may be bugs and issues. We appreciate your patience and invite you to report any problems you encounter. Your feedback will help us improve! Please note that the plugin is not yet published on the Chrome Web Store.
 
-![Screenshot](screenshot.png)
+Salient.News is a powerful Chrome extension designed to enhance your Twitter experience by giving you control over your timeline. Our mission is to provide a streamlined, personalized Twitter experience, free from the distraction of unwanted content.
 
-### Features
-Hide your main Twitter timeline by default
+Features
+Tweet Filter
+This is the inaugural feature of Salient.News - an intelligent Tweet Filter that removes specific tweets which you find annoying or irrelevant. Just provide an example tweet, and the tool learns what you don't want to see, helping to clean up your timeline.
 
-Analyze and display the timeline only if its overall mood is positive
+Installation
+Currently, since Salient.News is not yet available on the Chrome Web Store, you will need to install it manually. Follow these instructions:
 
-Provide a summary of the general vibes of your timeline
+Download the Salient.News.zip file from the GitHub repository.
+Unzip the file into a directory of your choice.
+Open Chrome and navigate to chrome://extensions/.
+Enable Developer Mode by clicking the toggle switch at the top right.
+Click the Load unpacked button and select the directory where you unzipped the Salient.News files.
+The Salient.News extension will now appear in your list of installed extensions.
+Usage
+Tweet Filter
+To use the Tweet Filter:
 
-Option to show the timeline even if it's not positive
+Navigate to Twitter and find a tweet that you'd like to filter out.
+Click on the 'Salient.News' extension button on your browser toolbar.
+Select 'Filter Tweet' option.
+Paste the tweet into the provided text box.
+Click 'Apply Filter' and enjoy your cleaner timeline.
+Contributing
+We value community contribution to improve Salient.News. If you would like to contribute, please fork the repository and use a feature branch. Pull requests are warmly welcome.
 
-### Installation
-Follow these steps to include Toody in your Chrome browser:
+For bugs, questions, or feature requests, please open an issue in the issue tracker.
 
-Clone this repository to your local machine:
+License
+The project is licensed under the MIT license. Please see the LICENSE file for more details.
 
-Copy code
-```bash
-git clone https://github.com/bartolkaruza/toody.git
-```
+Acknowledgements
+We would like to thank all our users and contributors who make Salient.News better every day.
 
-To use Toody, you'll need to provide your own OpenAI API key for mood analysis. Follow these steps to input your API key:
+Stay Connected
+Join our community on Discord or follow us on Twitter for updates and discussions.
 
-Open the popup.js file in the toody folder.
-
-Locate the following line at the beginning of the file:
-
-Copy code
-```javascript
-const OPENAI_API_KEY = "your_api_key_here";
-```
-Replace "your_api_key_here" with your OpenAI API key in double quotes. For example:
-
-Copy code
-```javascript
-const OPENAI_API_KEY = "abcdefgh1234567890";
-```
-Save the popup.js file.
-
-
-Now, Toody will use your OpenAI API key to analyze the mood of your Twitter timeline.
-
-Open Google Chrome and navigate to chrome://extensions/.
-
-Enable "Developer mode" by clicking the toggle switch on the top right corner of the extensions page.
-
-Click the "Load unpacked" button and select the cloned toody folder.
-
-The Toody extension should now appear in your list of extensions. You can click the Toody icon in the top right corner of your browser to access the extension popup.
-
-### Usage
-Click the Toody icon in the top right corner of your Chrome browser to open the popup.
-
-By default, your main Twitter timeline will be hidden, and only displayed if its overall mood is positive.
-
-To view a summary of the general vibes of your timeline, click the "Show Summary" button in the popup.
-
-If you wish to show the main timeline regardless of its mood, click the "Show Timeline Anyway" button in the popup.
-
-Enjoy a more thoughtful and positive Twitter experience with Toody!
+Stay in control of your timeline with Salient.News. Enhance your Twitter experience today.
