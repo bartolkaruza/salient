@@ -1,5 +1,5 @@
 Salient.News Chrome Plugin
-:warning: DISCLAIMER: Salient.News is currently in the pre-release early development stage. There may be bugs and issues. We appreciate your patience and invite you to report any problems you encounter. Your feedback will help us improve! Please note that the plugin is not yet published on the Chrome Web Store.
+:warning: DISCLAIMER: Salient.News is currently in the pre-release early development stage. It's not yet in a working state, even when bundling locally. It's also not yet published on the Chrome Web Store.
 
 Salient.News is a powerful Chrome extension designed to enhance your Twitter experience by giving you control over your timeline. Our mission is to provide a streamlined, personalized Twitter experience, free from the distraction of unwanted content.
 
