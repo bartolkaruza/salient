@@ -27,9 +27,15 @@ function updateExampleList(examples) {
   }
   examples.forEach((example) => {
     const li = document.createElement("li");
-    li.textContent = example;
+    li.className = "tweet-item";
+
+    const textContainer = document.createElement("span");
+    textContainer.textContent = example;
+    textContainer.className = "tweet-text";
+
     const removeButton = document.createElement("button");
     removeButton.textContent = "Remove";
+    removeButton.className = "remove-button";
     removeButton.addEventListener("click", function (response) {
       chrome.runtime.sendMessage(
         { action: "remove_filter_example", tweet: example },
@@ -38,6 +44,8 @@ function updateExampleList(examples) {
         }
       );
     });
+
+    li.appendChild(textContainer);
     li.appendChild(removeButton);
     ul.appendChild(li);
   });

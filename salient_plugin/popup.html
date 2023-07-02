@@ -1,15 +1,32 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
-<body>
+  <body>
     <h1>Tweet Filter</h1>
-    
-    <input type="text" id="tweet-input" placeholder="Enter tweet to filter">
+
+    <input type="text" id="tweet-input" placeholder="Enter tweet to filter manually" />
     <button id="add-button">Add</button>
-    
+
     <ul id="tweet-list"></ul>
-    
+
     <button id="reset-button">Reset</button>
-    
+
     <script src="popup.js"></script>
-</body>
+  </body>
+</html> -->
+
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+  </head>
+  <body>
+    <div id="popup-container">
+      <ul id="tweet-list"></ul>
+      <div id="action-container">
+        <input type="text" id="tweet-input" placeholder="Enter tweet to filter manually" />
+        <button id="add-button">Add</button>
+        <button id="reset-button">Reset</button>
+      </div>
+    </div>
+    <script src="popup.js"></script>
+  </body>
 </html>

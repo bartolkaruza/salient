@@ -1,40 +1,53 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
-  margin: 0;
-  padding: 20px;
-  width: 300px;
+#popup-container {
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  font-size: 14px;
+  width: 400px;
 }
 
-h1 {
-  font-size: 24px;
-  color: #4a90e2;
+.tweet-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tweet-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.remove-button {
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
+#tweet-input {
+  width: 100%;
   margin-bottom: 10px;
 }
 
-button {
-  background-color: #4a90e2;
-  color: white;
-  font-size: 16px;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+#add-button {
+  margin-bottom: 10px;
 }
 
-button:hover {
-  background-color: #3d78b9;
+#tweet-list {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 10px;
+  max-height: 200px;
+  overflow-y: auto;
+  width: 100%;
 }
 
-.summary {
-  background-color: white;
-  padding: 15px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-top: 10px;
+#tweet-list li {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
-.summary p {
-  margin: 0;
+#reset-button {
+  align-self: flex-start;
 }
