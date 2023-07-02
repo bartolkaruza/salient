@@ -5,6 +5,8 @@ from sklearn_sim import sklearn_similarity
 # from bert_sim import bert_similarity
 
 def ensemble_similarity(base_texts, target_texts):
+    if (len(base_texts) == 0 or len(target_texts) == 0):
+        return []
     # Get similarity matrices from different methods
     faiss_sim = np.array(faiss_similarity(base_texts, target_texts))
     jaccard_sim = np.array(jaccard_similarity(base_texts, target_texts))

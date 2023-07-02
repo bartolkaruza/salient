@@ -1,4 +1,5 @@
 from flask import Flask, request
+from flask_cors import CORS, cross_origin
 from sklearn_sim import sklearn_similarity
 from faiss_sim import faiss_similarity
 from jaccard_sim import jaccard_similarity
@@ -6,6 +7,8 @@ from bert_sim import bert_similarity
 from ensemble_sim import ensemble_similarity
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/sklearn_similarity', methods=['POST'])
 def sklearn_handler():
@@ -40,6 +43,7 @@ def bert_handler():
     return {'similarities': similarities}
 
 @app.route('/ensemble_similarity', methods=['POST'])
+@cross_origin()
 def ensemble_handler():
     data = request.get_json()
     base_texts = data['base_texts']
