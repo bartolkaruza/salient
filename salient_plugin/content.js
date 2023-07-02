@@ -22,6 +22,13 @@ function hideFilteredTweets(passed) {
       setTimeout(function () {
         tweetElements[index].style.display = "none"; // Hide after transition
       }, 500);
+    } else if (tweetElements[index].style.display === "none") {
+      // Show the element and animate its height from 0 to the original height
+      tweetElements[index].style.display = "block"; // Or whatever its original display value was
+      setTimeout(function () {
+        tweetElements[index].style.transition = "height 0.5s ease-out"; // Add transition
+        tweetElements[index].style.height = ""; // Animate to original height
+      }, 0);
     }
   });
 }
@@ -32,27 +39,15 @@ setInterval(function () {
     if (
       JSON.stringify(timelineTweets) !== JSON.stringify(result.timelineTweets)
     ) {
-      chrome.storage.local.set({ [TIMELINE_STORAGE_KEY]: timelineTweets }, function () {
-        console.log("Timeline tweets stored in local storage");
-      });
+      chrome.storage.local.set(
+        { [TIMELINE_STORAGE_KEY]: timelineTweets },
+        function () {
+          console.log("Timeline tweets stored in local storage");
+        }
+      );
     }
   });
 }, 1000);
-
-// // Continuously extract new tweets from the user's Twitter timeline and send them to background.js
-// setInterval(function () {
-//   let timelineTweets = extractTimelineTweets();
-//   console.log("timeline");
-//   console.log(lastTimelineTweets);
-//   if (JSON.stringify(timelineTweets) !== JSON.stringify(lastTimelineTweets)) {
-//     console.log("sending timeline_tweets action");
-//     lastTimelineTweets = timelineTweets;
-//     chrome.runtime.sendMessage({
-//       action: "timeline_tweets",
-//       timelineTweets: timelineTweets,
-//     });
-//   }
-// }, 1000);
 
 // Listen for similarity scores from background.js and hide similar tweets
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
