@@ -17,12 +17,14 @@ def score_filter(timeline_tweet_similarity_scores):
 @cross_origin()
 def rating_handler():
     data = request.get_json()
-    print(data)
     user_stored_to_filter_tweets = data['user_stored_to_filter_tweets']
     new_timeline_tweets = data['new_timeline_tweets']
     # timeline tweets are in dimension 0, similarity scores in dimension 1. This is inverted from backend.py
-    similarities = ensemble_similarity(new_timeline_tweets, user_stored_to_filter_tweets)
-    similarity_filter_passed = [score_filter(timeline_tweet_similarity_scores) for timeline_tweet_similarity_scores in similarities]
+    if len(user_stored_to_filter_tweets) > 0:
+        similarities = ensemble_similarity(new_timeline_tweets, user_stored_to_filter_tweets)
+        similarity_filter_passed = [score_filter(timeline_tweet_similarity_scores) for timeline_tweet_similarity_scores in similarities]
+    else:
+        similarity_filter_passed = [True for i in range(len(new_timeline_tweets))]
     # For now the first prototype implements a single filter. More functionality will be added to this endpoint.
     return {
         'passed': similarity_filter_passed

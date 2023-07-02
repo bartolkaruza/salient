@@ -2,6 +2,7 @@ const TWEET_EXAMPLES_STORAGE_KEY = "tweetFilterExamples";
 const TIMELINE_STORAGE_KEY = "timeline";
 
 function checkFilterMatrix(timeline, examples) {
+  console.log({ timeline, examples });
   fetch("http://localhost:3005/rate_tweets", {
     method: "POST",
     headers: {
@@ -17,6 +18,7 @@ function checkFilterMatrix(timeline, examples) {
       console.log({ data });
       chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
         if (tabs.length > 0) {
+          console.log("tabs length pass");
           chrome.tabs.sendMessage(tabs[0].id, {
             action: "apply_filter",
             ...data,

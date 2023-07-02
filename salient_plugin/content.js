@@ -1,33 +1,59 @@
 const TIMELINE_STORAGE_KEY = "timeline";
 
+function addFilterButton(tweet, tweetContentElement) {
+  const avatarParentDiv = tweet.querySelector(
+    'div > [data-testid="Tweet-User-Avatar"]'
+  ).parentNode;
+  const existingButton = avatarParentDiv.querySelector("button");
+  if (!existingButton) {
+    const button = document.createElement("button");
+    button.innerHTML = "Filter similar";
+    avatarParentDiv.appendChild(button);
+    button.addEventListener("click", function () {
+      chrome.runtime.sendMessage(
+        {
+          action: "add_filter_example",
+          tweet: tweetContentElement.textContent,
+        },
+        function (response) {
+          // pass
+        }
+      );
+    });
+  }
+}
+
 function extractTimelineTweets() {
   let tweetElements = document.querySelectorAll('[data-testid="tweet"]');
   let tweets = Array.from(tweetElements).map((tweet) => {
     const tweetContentElement = tweet.querySelector(
       'div[data-testid="tweetText"] > span'
     );
+    addFilterButton(tweet, tweetContentElement);
     return tweetContentElement ? tweetContentElement.textContent : "";
   });
   return tweets;
 }
 
 function hideFilteredTweets(passed) {
-  let tweetElements = Array.from(
+  const tweetElements = Array.from(
     document.querySelectorAll('[data-testid="tweet"]')
   );
+
   passed.forEach((pass, index) => {
     if (!pass) {
-      tweetElements[index].style.transition = "height 0.5s ease-out"; // Add transition
-      tweetElements[index].style.height = "0px"; // Animate to height 0
+      tweetElements[index].style.transition = "height 0.5s ease-out";
+      tweetElements[index].style.height = "0px";
       setTimeout(function () {
-        tweetElements[index].style.display = "none"; // Hide after transition
+        tweetElements[index].style.display = "none";
       }, 500);
     } else if (tweetElements[index].style.display === "none") {
-      // Show the element and animate its height from 0 to the original height
-      tweetElements[index].style.display = "block"; // Or whatever its original display value was
+      console.log('restoring')
+
+      tweetElements[index].style.display = "flex";
       setTimeout(function () {
-        tweetElements[index].style.transition = "height 0.5s ease-out"; // Add transition
-        tweetElements[index].style.height = ""; // Animate to original height
+        tweetElements[index].style.transition = "height 0.5s ease-out";
+        tweetElements[index].style.height = "";
       }, 0);
     }
   });
@@ -49,7 +75,7 @@ setInterval(function () {
   });
 }, 1000);
 
-// Listen for similarity scores from background.js and hide similar tweets
+
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === "apply_filter") {
     console.log({ request });
